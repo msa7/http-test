@@ -66,8 +66,8 @@ module HttpTest::HttpMethods
     @response = Response.create Faraday.put(url(path), body)
   end
 
-  def DELETE(path)
-    @response = Response.create Faraday.delete(url(path))
+  def DELETE(path, params = {})
+    @response = Response.create Faraday.delete(url(path), params)
   end
 
   attr_reader :response
@@ -76,4 +76,3 @@ module HttpTest::HttpMethods
     assert_equal(302, response.code)
     assert_equal(url, response.headers["location"])
   end
-end
